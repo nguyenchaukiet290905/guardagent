@@ -1,0 +1,2 @@
+# No external dependencies yet.
+# Python 3.13+
