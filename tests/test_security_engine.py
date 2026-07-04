@@ -11,3 +11,4 @@ for text in tests:
     print("=" * 50)
     print("Testing:", text)
     detect_leakage(text)
+
