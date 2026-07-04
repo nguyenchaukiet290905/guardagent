@@ -1,92 +1,53 @@
 # AI Security Notes
 
-## Day 1 - Detect Leakage
+## Detection Techniques
 
-### Core Idea
-
-Sensitive data can be leaked accidentally.
-
-Example:
-
-* OpenAI API Key
-* Password
-* Token
-
-### Regex
-
-Regex is used to match text patterns.
-
-Example:
-
-sk-[a-zA-Z0-9]{48}
-
-### What I Built
-
-detect_leakage(text)
-
-Returns:
-
-* True → API Key detected
-* False → Safe
-
-### Security Insight
-
-Rule-based detection is simple and practical.
-
-Many security tools start with pattern matching.
-
-### My Takeaway
-
-GuardAgent uses Regex to detect leakage API keys before sending prompts to an LLM.
-
-
-
+| Threat | Technique |
+|---------|-----------|
+| API Key Leakage | Regex |
+| Prompt Injection | Keyword Matching |
 
 ---
 
-## Day 2 - Detect Injection
+## Regex
 
-### Core Idea
+Purpose:
+- Detect text with a fixed format.
 
-Attackers may try to manipulate AI instructions.
+Examples:
+- API Keys
+- Email
+- IP Address
+- Phone Number
 
-Example:
+Python:
+re.search(pattern, text)
 
-* ignore previous instructions
-* system prompt
-* forget all previous
+---
 
-### Keyword Detection
+## Keyword Matching
 
-Use:
+Purpose:
+- Detect suspicious words or phrases.
 
-* List
-* For Loop
-* in Operator
+Python:
 
-### What I Built
+for keyword in keywords:
+    if keyword in text:
+        return True
 
-detect_injection(text)
+---
 
-Returns:
+## Current GuardAgent Modules
 
-* True → Dangerous prompt detected
-* False → Safe
+- detect_leakage()
+- detect_injection()
 
-### Security Insight
+---
 
-Prompt Injection is one of the most common LLM attacks.
+## Things I Learned
 
-Keyword matching is the first layer of defense.
-
-### Improvement Idea
-
-Convert input to lowercase before checking.
-
-Example:
-
-IgNoRe PrEvIoUs
-
-↓
-
-ignore previous
+- Regex is good for fixed patterns.
+- Prompt Injection has no fixed pattern.
+- Keyword Matching is simple but effective.
+- Return type: bool
