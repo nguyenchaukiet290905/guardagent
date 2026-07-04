@@ -1,27 +1,37 @@
-### Detect-Leakage
+# Detect Leakage
 
-## What is Regex
+## Regex là gì?
 
-Regex is a pattern used to detect API keys in text.
+Regex (Regular Expression) là một công cụ dùng để tìm kiếm hoặc kiểm tra chuỗi theo một mẫu (pattern) xác định.
 
-## Why do we use Regex
+## Tại sao dùng Regex?
 
-Regex helps detect API keys automatically.
+API Key có định dạng cố định.
 
-## Example
+Regex giúp phát hiện API Key tự động mà không cần kiểm tra từng ký tự.
 
-[] -> Character class
-[a-z] -> Lowercase letters
-[A-Z] -> Uppercase letters
-[0-9] -> Digits
-{48} -> Exactly 48 characters
+## Ví dụ
 
-## In my code
+[] → Nhóm ký tự (Character Class)
 
-pattern = r"[a-zA-Z0-9]{48}"
+[a-z] → Chữ thường
 
-This pattern matches exactly 48 letters or digits.
+[A-Z] → Chữ hoa
+
+[0-9] → Chữ số
+
+{48} → Chính xác 48 ký tự
+
+## Trong code của mình
+
+pattern = r"sk-[a-zA-Z0-9]{48}"
+
+Pattern này dùng để tìm OpenAI API Key.
 
 re.search(pattern, text)
 
-Searches for the pattern in the input text.
+Hàm này tìm pattern trong chuỗi text.
+
+Nếu tìm thấy → trả về Match Object.
+
+Nếu không tìm thấy → trả về None.

@@ -1,44 +1,42 @@
-### Detect-Injection
+# Detect Injection
 
-## What is Keyword Matching
+## Keyword Matching là gì?
 
-Keyword Matching is a technique that detects specific words or phrases in text.
+Keyword Matching là kỹ thuật kiểm tra xem trong văn bản có chứa các từ khóa hoặc cụm từ đã định nghĩa trước hay không.
 
-## Why do we use Keyword Matching
+## Tại sao dùng Keyword Matching?
 
-Prompt Injection does not have a fixed format like an API key.
+Prompt Injection không có định dạng cố định như API Key.
 
-Instead, we check whether the input contains suspicious keywords.
+Vì vậy không thể dùng Regex.
 
-## What is Prompt Injection
+Thay vào đó, ta kiểm tra xem input có chứa các từ khóa đáng ngờ hay không.
 
-Prompt Injection is an attack that tricks an AI model into ignoring its original instructions and following the attacker's instructions.
+## Prompt Injection là gì?
 
-## Why do we use Injection
+Prompt Injection là kỹ thuật tấn công khiến AI bỏ qua hướng dẫn ban đầu và làm theo yêu cầu của kẻ tấn công.
 
-We detect prompt injection to protect AI systems from malicious user input.
+## Tại sao phải phát hiện Prompt Injection?
 
-## Example
+Để bảo vệ hệ thống AI khỏi những yêu cầu độc hại của người dùng.
 
-[] -> list
+## Ví dụ
 
-Ignore the previous
+- Ignore previous instructions
+- Forget everything above
+- System prompt
+- Developer message
 
-go to the system
+## Trong code của mình
 
-## In my code
-
-keywords =[
-    "Ignore the previous",
-    "go to the system"
+```python
+keywords = [
+    "Ignore previous instructions",
+    "System prompt"
 ]
-for keyword in keywords:
-    if keyword in text
-        return true
-    return false
 
-This for loop checks each keyword in the list.
+Chương trình sẽ duyệt từng keyword trong danh sách.
 
-If a keyword is found in the input text, the function returns True.
+Nếu keyword xuất hiện trong input → trả về True.
 
-Otherwise, it returns False.
+Nếu không có keyword nào xuất hiện → trả về False.
