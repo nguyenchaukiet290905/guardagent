@@ -10,5 +10,5 @@ async def home():
 @app.post("/v1/shield")
 async def shield():
     return {
-        "block": "true"
+        "blocked": True
     }    

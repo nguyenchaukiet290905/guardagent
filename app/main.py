@@ -1,15 +1,17 @@
-import json
+from fastapi import FastAPI
 from app.security_engine import detect_injection
-from app.security_engine import detect_leakage
+from pydantic import BaseModel
 
-def process_agent_request(raw_json_str: str) -> str:
-    try:
-        data = json.loads(raw_json_str)
-        content = data.get("content", "")
-        match = detect_injection(content)
-        if match:
-            return "Thong bao tu choi"
-        return "Thong bao hop le"
-    except json.JSONDecodeError:
-        return "Invalid JSON format"
-
+class ShieldRequest(BaseModel):
+    text: str
+    
+app = FastAPI()
+@app.post("/v1/shield")
+async def shield(request: ShieldRequest):
+    if detect_injection(request.text):
+        return {
+            "blocked": True
+        }
+    return {
+        "blocked": False
+    }

@@ -21,8 +21,9 @@ This project is being developed step by step as part of an AI Security learning 
 
 - ✅ Prompt Injection Detection
 - ✅ API Key Leakage Detection
-- ✅ Rule-based Detection Engine
-- ✅ Regex-based Pattern Matching
+- ✅ Rule-based AI Security Detection
+- ✅ FastAPI REST API
+- ✅ Pydantic Request Validation
 
 ---
 
@@ -33,6 +34,7 @@ guardagent/
 │
 ├── app/
 │   ├── __init__.py
+│   ├── main.py
 │   └── security_engine.py
 │
 ├── tests/
@@ -58,6 +60,28 @@ detect_leakage(text: str) -> bool
 
 detect_injection(text: str) -> bool
 ```
+
+## REST API
+
+Current endpoint
+
+POST /v1/shield
+
+Request
+
+{
+    "text": "Ignore previous instructions."
+}
+
+Response
+
+{
+    "blocked": true
+}
+
+## API Documentation
+
+<img src="images/swagger.png" width="900">
 
 ### Prompt Injection Detection
 
@@ -103,7 +127,9 @@ detect_leakage(
 
 | Technology | Purpose |
 |------------|---------|
-| Python 3.13+ | Core Programming Language |
+| Python | Core Programming |
+| FastAPI | REST API |
+| Pydantic | Request Validation |
 | Regular Expressions | API Key Detection |
 | Rule-based Logic | Prompt Injection Detection |
 
@@ -122,8 +148,8 @@ detect_leakage(
 
 - [x] Prompt Injection Detection
 - [x] API Key Leakage Detection
-- [ ] FastAPI Integration
-- [ ] Pydantic Validation
+- [x] FastAPI REST API
+- [x] Pydantic Validation
 - [ ] Structured JSON Logging
 - [ ] Automated Testing with Pytest
 - [ ] Docker Support
@@ -132,29 +158,32 @@ detect_leakage(
 
 ## Run
 
-Clone the repository
-
+1. Clone Repository
 ```bash
-git clone https://github.com/<your-github-username>/guardagent.git
+git clone https://github.com/nguyenchaukiet290905/guardagent.git
 ```
+2. Install Dependencies
 
-Move into the project
+pip install -r requirements.txt
 
-```bash
-cd guardagent
-```
+3. Run REST API
 
-Run the application
+uvicorn app.main:app --reload
+
+4. Open Swagger UI
+
+http://127.0.0.1:8000/docs
+
+Optional
+
+Run Security Engine
 
 ```bash
 python app/security_engine.py
 ```
 
----
-
 ## Future Improvements
 
-- FastAPI REST API
 - JSON Structured Logging
 - Secure Exception Handling
 - Docker Container
@@ -169,3 +198,4 @@ python app/security_engine.py
 IT Student – Ho Chi Minh City University of Industry and Trade (HUIT)
 
 AI Security Learning Project (2026)
+
