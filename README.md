@@ -151,6 +151,8 @@ detect_leakage(
 
 ## Roadmap
 
+See the detailed development roadmap: [ROADMAP.md](ROADMAP.md)
+
 - [x] Prompt Injection Detection
 - [x] API Key Leakage Detection
 - [x] FastAPI REST API
